@@ -1,0 +1,56 @@
+﻿@model Universidad.Models.Alunmos_Materias
+
+@{
+    ViewBag.Title = "DeleteAlumnoMateria";
+}
+
+<h2>Eliminar Materia a Alumno</h2>
+
+<h3>¿Está seguro de eliminar esta materia?</h3>
+<div>
+    <h4>Alunmos_Materias</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cedula)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cedula)
+        </dd>
+
+        <dt>
+            Materia
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Materias.Nombre)
+        </dd>
+
+        <dt>
+            Salón (Número Salón - Piso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salones.NumeroSalon) - @Html.DisplayFor(model => model.Salones.Piso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nota)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nota)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar a la Lista", "Index")
+        </div>
+    }
+</div>

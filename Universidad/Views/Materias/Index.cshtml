@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Universidad.Models.Materias>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear Nueva Materia", "Create")
+</p>
+<p>
+    <input id="CampoBusqueda" type="text" class="form-control" placeholder="Ingresar Mínimo 4 Caracteres">
+    <button id="BotonBusqueda" type="button" class="btn btn-secondary">Buscar Materia</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.Display("Profesor")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Profesores.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar Materia", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(function () {
+        $(document).on("click", "#BotonBusqueda", function (e) {
+            var valor = $("#CampoBusqueda").val();
+            if (valor.length < 4) 
+                alert("Debe ingresar mínimo 4 caracteres");
+            else
+                window.location.href = '@Url.Action("Index", "Materias")'+'?campo='+valor;
+        });
+    });
+    
+</script>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Universidad.Models.Alumnos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Alumnos</h2>
+<p>
+    <input id="CampoBusqueda" type="text" class="form-control" placeholder="Ingrese cédula">
+    <button id="BotonBusqueda" type="button" class="btn btn-secondary">Buscar Alumno</button>
+</p>
+<p>
+    @Html.ActionLink("Crear Nuevo Alumno", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Cedula", "Index", new { orden = "Cedula" })
+        </th>
+        <th>
+            @Html.ActionLink("Fecha de Registro", "Index", new { orden = "FechaRegistro" })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayName("Promedio")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRegistro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @{
+                    double? promedio = item.Alunmos_Materias.Select(x => x.Nota).Average();
+                    //double? promedio = 5;
+                    var promedioString = promedio.ToString();
+                }
+                @promedioString
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Cedula }) |
+                @Html.ActionLink("Lista de materias", "Details", new { id = item.Cedula }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.Cedula })
+            </td>
+        </tr>
+    }
+
+</table>
+@Scripts.Render("~/bundles/jquery")
+<script>
+    $(function () {
+        $(document).on("click", "#BotonBusqueda", function (e) {
+            var valor = $("#CampoBusqueda").val();
+            window.location.href = '@Url.Action("Index", "Alumnos")'+'?cedula='+valor;
+        });
+    });
+
+</script>

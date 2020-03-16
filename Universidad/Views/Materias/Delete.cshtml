@@ -1,0 +1,40 @@
+﻿@model Universidad.Models.Materias
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Materia</h2>
+
+<h3>¿Está seguro de eliminar materia? Si tiene alumnos asociados no será posible eliminar. Por favor validar</h3>
+<div>
+    <h4>Materias</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfesorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfesorId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Elimnar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar a la Lista", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Universidad.Models.Salones>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Salones</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Salon", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroSalon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Piso)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroSalon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Piso)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

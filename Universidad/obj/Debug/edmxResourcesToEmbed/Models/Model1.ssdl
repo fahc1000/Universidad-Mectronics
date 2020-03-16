@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UniversidadModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Alumnos">
+    <Key>
+      <PropertyRef Name="Cedula" />
+    </Key>
+    <Property Name="Cedula" Type="bigint" Nullable="false" />
+    <Property Name="FechaRegistro" Type="datetime" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Alunmos_Materias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cedula" Type="bigint" Nullable="false" />
+    <Property Name="MateriaId" Type="int" Nullable="false" />
+    <Property Name="SalonId" Type="int" Nullable="false" />
+    <Property Name="Nota" Type="int" />
+  </EntityType>
+  <EntityType Name="Materias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProfesorId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Profesores">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Salones">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumeroSalon" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Piso" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrazaNota">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Alumnos_Materias_Id" Type="int" Nullable="false" />
+    <Property Name="ValorAnterior" Type="int" Nullable="false" />
+    <Property Name="ValorNuevo" Type="int" Nullable="false" />
+    <Property Name="ProfesorId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Alunmos_M__Cedul__2E1BDC42">
+    <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="1" />
+    <End Role="Alunmos_Materias" Type="Self.Alunmos_Materias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alumnos">
+        <PropertyRef Name="Cedula" />
+      </Principal>
+      <Dependent Role="Alunmos_Materias">
+        <PropertyRef Name="Cedula" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Alunmos_M__Mater__2F10007B">
+    <End Role="Materias" Type="Self.Materias" Multiplicity="1" />
+    <End Role="Alunmos_Materias" Type="Self.Alunmos_Materias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Materias">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Alunmos_Materias">
+        <PropertyRef Name="MateriaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Alunmos_M__Salon__31EC6D26">
+    <End Role="Salones" Type="Self.Salones" Multiplicity="1" />
+    <End Role="Alunmos_Materias" Type="Self.Alunmos_Materias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Salones">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Alunmos_Materias">
+        <PropertyRef Name="SalonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Materias__Profes__2D27B809">
+    <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
+    <End Role="Materias" Type="Self.Materias" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profesores">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Materias">
+        <PropertyRef Name="ProfesorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TrazaNota__Alumn__300424B4">
+    <End Role="Alunmos_Materias" Type="Self.Alunmos_Materias" Multiplicity="1" />
+    <End Role="TrazaNota" Type="Self.TrazaNota" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alunmos_Materias">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrazaNota">
+        <PropertyRef Name="Alumnos_Materias_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TrazaNota__Profe__30F848ED">
+    <End Role="Profesores" Type="Self.Profesores" Multiplicity="1" />
+    <End Role="TrazaNota" Type="Self.TrazaNota" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profesores">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrazaNota">
+        <PropertyRef Name="ProfesorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="UniversidadModelStoreContainer">
+    <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Alunmos_Materias" EntityType="Self.Alunmos_Materias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Materias" EntityType="Self.Materias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Profesores" EntityType="Self.Profesores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Salones" EntityType="Self.Salones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrazaNota" EntityType="Self.TrazaNota" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Alunmos_M__Cedul__2E1BDC42" Association="Self.FK__Alunmos_M__Cedul__2E1BDC42">
+      <End Role="Alumnos" EntitySet="Alumnos" />
+      <End Role="Alunmos_Materias" EntitySet="Alunmos_Materias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Alunmos_M__Mater__2F10007B" Association="Self.FK__Alunmos_M__Mater__2F10007B">
+      <End Role="Materias" EntitySet="Materias" />
+      <End Role="Alunmos_Materias" EntitySet="Alunmos_Materias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Alunmos_M__Salon__31EC6D26" Association="Self.FK__Alunmos_M__Salon__31EC6D26">
+      <End Role="Salones" EntitySet="Salones" />
+      <End Role="Alunmos_Materias" EntitySet="Alunmos_Materias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Materias__Profes__2D27B809" Association="Self.FK__Materias__Profes__2D27B809">
+      <End Role="Profesores" EntitySet="Profesores" />
+      <End Role="Materias" EntitySet="Materias" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TrazaNota__Alumn__300424B4" Association="Self.FK__TrazaNota__Alumn__300424B4">
+      <End Role="Alunmos_Materias" EntitySet="Alunmos_Materias" />
+      <End Role="TrazaNota" EntitySet="TrazaNota" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TrazaNota__Profe__30F848ED" Association="Self.FK__TrazaNota__Profe__30F848ED">
+      <End Role="Profesores" EntitySet="Profesores" />
+      <End Role="TrazaNota" EntitySet="TrazaNota" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

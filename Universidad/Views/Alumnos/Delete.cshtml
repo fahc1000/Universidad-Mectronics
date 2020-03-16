@@ -1,0 +1,51 @@
+﻿@model Universidad.Models.Alumnos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Alumno</h2>
+
+<h3>¿Está seguro de eliminar este Alumno?</h3>
+@using (Html.BeginForm())
+{
+    <div>
+        <h4>Alumnos</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Cedula)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Cedula)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaRegistro)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FechaRegistro)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+        </dl>
+
+
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Elimnar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar a la Lista", "Index")
+        </div>
+    </div>
+}
+

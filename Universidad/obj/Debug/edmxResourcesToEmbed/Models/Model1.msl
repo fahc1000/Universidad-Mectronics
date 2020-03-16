@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UniversidadModelStoreContainer" CdmEntityContainer="UniversidadEntities">
+    <EntitySetMapping Name="Alumnos">
+      <EntityTypeMapping TypeName="UniversidadModel.Alumnos">
+        <MappingFragment StoreEntitySet="Alumnos">
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Alunmos_Materias">
+      <EntityTypeMapping TypeName="UniversidadModel.Alunmos_Materias">
+        <MappingFragment StoreEntitySet="Alunmos_Materias">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+          <ScalarProperty Name="MateriaId" ColumnName="MateriaId" />
+          <ScalarProperty Name="SalonId" ColumnName="SalonId" />
+          <ScalarProperty Name="Nota" ColumnName="Nota" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Materias">
+      <EntityTypeMapping TypeName="UniversidadModel.Materias">
+        <MappingFragment StoreEntitySet="Materias">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="ProfesorId" ColumnName="ProfesorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Profesores">
+      <EntityTypeMapping TypeName="UniversidadModel.Profesores">
+        <MappingFragment StoreEntitySet="Profesores">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salones">
+      <EntityTypeMapping TypeName="UniversidadModel.Salones">
+        <MappingFragment StoreEntitySet="Salones">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NumeroSalon" ColumnName="NumeroSalon" />
+          <ScalarProperty Name="Piso" ColumnName="Piso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrazaNota">
+      <EntityTypeMapping TypeName="UniversidadModel.TrazaNota">
+        <MappingFragment StoreEntitySet="TrazaNota">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Alumnos_Materias_Id" ColumnName="Alumnos_Materias_Id" />
+          <ScalarProperty Name="ValorAnterior" ColumnName="ValorAnterior" />
+          <ScalarProperty Name="ValorNuevo" ColumnName="ValorNuevo" />
+          <ScalarProperty Name="ProfesorId" ColumnName="ProfesorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

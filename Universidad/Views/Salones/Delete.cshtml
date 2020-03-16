@@ -1,0 +1,40 @@
+﻿@model Universidad.Models.Salones
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Salon</h2>
+
+<h3>¿Seguro que desea aliminar salón? Si hay materias asociadas no podrá ser eliminado. Por favor validar primero</h3>
+<div>
+    <h4>Salones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroSalon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroSalon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Piso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Piso)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>
